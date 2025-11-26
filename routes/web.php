@@ -24,15 +24,17 @@ Route::delete('/obat/{obat}', [ObatController::class, 'destroy'])->name('obat.de
 Route::post('/obat/import', [ObatController::class, 'import'])->name('obat.import');
 
 Route::get('/search-obat', [ObatController::class, 'search']);
-Route::post('/save-penerimaan', [PenerimaanController::class, 'store'])->name('penerimaan.obat.store');
+Route::post('/save-penerimaan', [PenerimaanController::class, 'simpanPenerimaan'])->name('penerimaan.obat.store');
 
-Route::delete('/penerimaan/item', [PenerimaanController::class, 'destroyItem'])->name('penerimaan.item.destroy');
 
 
 
 Route::get('/penerimaan/obat', [PenerimaanController::class, 'penerimaanObat'])->name('penerimaan.obat.index');
 Route::post('penerimaan/obat',[PenerimaanController::class, 'storePenerimaanObat'])->name('penerimaan.obat.store');
 Route::get('/penerimaan/obat/detail/{id}', [PenerimaanController::class, 'detailPenerimaanObat'])->name('penerimaan.obat.detail_penerimaan');
+
+Route::delete('/penerimaan/item/{PenerimaanDetail}', [PenerimaanController::class, 'destroyItem'])->name('penerimaan.item.destroy');
+
 
 Route::get('/penerimaan/{id}/edit', [PenerimaanController::class, 'edit'])->name('penerimaan.edit');
 Route::put('/penerimaan/{penerimaan}', [PenerimaanController::class, 'update'])->name('penerimaan.update');

@@ -6,7 +6,6 @@
 
 <div class="p-4 sm:ml-64 bg-gray-50">
 
-
         <nav class="flex ml-4" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
@@ -29,6 +28,22 @@
                 </li>
             </ol>
         </nav>
+
+
+    
+        @if(session('success'))
+            <div id="toast-success" class="flex items-center w-full max-w-sm p-4 text-body bg-neutral-primary-soft rounded-base shadow-xs border border-default fixed top-5 right-5" role="alert">
+                    <div class="inline-flex items-center justify-center shrink-0 w-7 h-7 text-fg-success bg-success-soft rounded">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/></svg>
+                        <span class="sr-only">Check icon</span>
+                    </div>
+                    <div class="ms-3 text-sm font-normal">  {{ session('success') }}.</div>
+                    <button type="button" class="ms-auto flex items-center justify-center text-body hover:text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded text-sm h-8 w-8 focus:outline-none" data-dismiss-target="#toast-success" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+                    </button>
+                </div>
+        @endif
 
 
 
@@ -64,11 +79,8 @@
                             <div class="text-gray-800 font-semibold">{{ $penerimaan_obat->penerima}} </div>
                         </div>
 
-                    </div> 
+                    </div>
                     {{-- close grid --}}
-
-
-                
 
             </div>
 
@@ -79,18 +91,21 @@
 
                         <form action="{{ route('penerimaan.obat.store') }}" method="post">
                             @csrf
-                              <button class="text-white my-2 inline-flex items-center float-right bg-green-500 box-border border border-transparent hover:bg-green-600 mr-2 cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-sm text-sm px-4 py-1.5 focus:outline-none" id="btnSave" type="submit">
-                               <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                             <button id="btnSave" type="submit" disabled
+                                class="text-white my-2 inline-flex items-center float-right bg-green-500 opacity-50 cursor-not-allowed box-border border border-transparent rounded-sm text-sm px-4 py-1.5">
+                                <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
-                                    </svg>
+                                </svg>
+                                Simpan
+                            </button>
 
-                                    Simpan
-                             </button>
                         <!-- Modal toggle -->
                             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="inline-flex items-center text-white m-2 float-right bg-amber-400 box-border border border-transparent hover:bg-amber-600 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-sm text-sm px-4 py-1.5 cursor-pointer focus:outline-none" type="button">
                                <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
                                          Input Item obat
                             </button>
+
+                            
 
                             <div class="clear-both"></div>
                                <input type="hidden" name="id_penerimaan" value="{{ $penerimaan_obat->id }}">
@@ -120,6 +135,9 @@
                                             <th scope="col" class="px-6 py-3 font-medium">
                                                 Exp Date
                                             </th>
+                                               <th scope="col" class="px-6 py-3 font-medium">
+                                                Merk
+                                            </th>
                                             <th scope="col" class="px-6 py-3 font-medium">
                                                 Penyedia
                                             </th>
@@ -131,7 +149,7 @@
                                 <tbody id="data-body">
 
                                     @php
-                                        
+
                                        // dd($penerimaan_obat->details);
 
                                     @endphp
@@ -147,39 +165,37 @@
                                         <td class="px-6 py-4">{{ $list->harga }} </td>
                                         <td class="px-6 py-4">{{ $list->no_batch }} </td>
                                         <td class="px-6 py-4">{{ $list->exp_date }}</td>
+                                         <td class="px-6 py-4">{{ $list->merk }}</td>
                                         <td class="px-6 py-4">{{ $list->penyedia }}</td>
                                         <td class="px-6 py-1">
                                              <div class="flex gap-2">
                                                 <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-amber-400  hover:text-amber-600 flex cursor-pointer text-sm edit-item"  data-id="{{ $list->id }}"  type="button">
                                                     <svg class="w-[18px] h-[18px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                                                </svg>  
+                                                </svg>
                                                 </button>
-                                                <form action="{{ route('penerimaan.item.destroy', $list->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class=" text-red-500 cursor-pointer  hover:text-red-600 flex"> 
-                                                            <svg class="w-[18px] h-[18px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                                                        </svg>
 
-                                                    </button>
-                                                </form>
+                                                <a href="#" class="deleteItem text-red-500 hover:text-red-600" data-id="{{ $list->id }}">
+                                                    <svg class="w-[18px] h-[18px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                                    </svg>
+                                                </a>
+                                                
                                              </div>
 
 
                                         </td>
-                                        
+
                                       </tr>
-                                        
+
                                     @endforeach
 
-                                </tbody>    
+                                </tbody>
                             </table>
                             </form>
                     </div>
             </div>
-            
+
 
             <!-- Main modal -->
          <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -189,7 +205,7 @@
                       <!-- Modal header -->
                         <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                             <h3 class="text-lg font-medium text-heading">
-                            Input Obat
+                             Input Obat
                             </h3>
                             <button type="button" class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="crud-modal">
                                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
@@ -246,19 +262,26 @@
                                     </div>
                                      <div>
                                         <label class="block mb-2.5 text-sm font-medium text-heading">Exp. Date</label>
-                                        <input type="text" name="exp_date" id="exp_date"  autocomplete="off"  datepicker datepicker-format="dd-mm-yyyy"  datepicker datepicker-autohide 
+                                        <input type="text" name="exp_date" id="exp_date"  autocomplete="off"  datepicker datepicker-format="dd-mm-yyyy"  datepicker datepicker-autohide
                                             class=" border border-default-medium text-heading text-sm rounded-base
                                                 focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body">
                                     </div>
                                 </div>
 
+                                
+                                  <div class="col-span-1 mb-3">
+                                    <label for="merk" class="block mb-2.5 text-sm font-medium text-heading">Merk</label>
+                                    <input type="text" name="merk" id="merk"  class="border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="ketik merk"  required="">
+
+                                </div>
+
                                   <div class="col-span-1">
                                     <label for="name" class="block mb-2.5 text-sm font-medium text-heading">Nama Penyedia</label>
-                                    <input type="text" name="penyedia" id="penyedia"  class="border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="ketik nama penyedia" autocomplete="off" required="">
-                                   
+                                    <input type="text" name="penyedia" id="penyedia"  class="border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="ketik nama penyedia"  required="">
+
                                 </div>
                                <div class="flex mt-4 items-end justify-end space-x-4 border-t border-default pt-4 md:pt-6">
-                                  
+
                                     <button data-modal-hide="crud-modal" type="button" class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
                                     <button type="button" id="addItem" class="inline-flex items-center  text-white bg-green-500 hover:bg-green-600 cursor-pointer box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                                         <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
@@ -268,7 +291,7 @@
                         </form>
                     </div>
                 </div>
-            </div> 
+            </div>
 
 
    </div>
@@ -288,6 +311,21 @@
                 });
 
 
+                function refreshSaveButton() {
+                            let count = $("#data-body tr").length;
+
+                            if (count > 0) {
+                                $("#btnSave")
+                                    .prop("disabled", false)
+                                    .removeClass("opacity-50 cursor-not-allowed");
+                            } else {
+                                $("#btnSave")
+                                    .prop("disabled", true)
+                                    .addClass("opacity-50 cursor-not-allowed");
+                            }
+                        }
+
+
                 $(document).ready(function () {
 
                         // === AUTOCOMPLETE OBAT ===
@@ -304,10 +342,10 @@
 
                                     data.forEach(function (item) {
                                         $("#listObat").append(`
-                                            <option 
-                                                data-id="${item.id}" 
-                                                data-satuan="${item.satuan}" 
-                                        
+                                            <option
+                                                data-id="${item.id}"
+                                                data-satuan="${item.satuan}"
+
                                                 value="${item.nama}">
                                             `);
                                     });
@@ -325,6 +363,13 @@
                         });
 
 
+                        $("#btnSave").click(function(e){
+                            if ($("#data-body tr").length === 0) {
+                                e.preventDefault();
+                                alert("Minimal 1 item obat harus ditambahkan!");
+                            }
+                        });
+
                         // === TAMBAH ITEM ===
                         $("#addItem").click(function () {
 
@@ -335,6 +380,7 @@
                             let harga = $("#harga").val();
                             let batch = $("#no_batch").val();
                             let exp = $("#exp_date").val();
+                            let merk = $("#merk").val();
                             let penyedia = $("#penyedia").val();
 
                             if (nama === "" || qty === "") {
@@ -345,7 +391,7 @@
                             let row = `
                                 <tr class="border-b border-default">
                                     <td class="px-6 py-4">#
-                                    
+
                                     </td>
                                     <td class="px-6 py-4">${nama}
                                         <input type="hidden" name="items[nama_obat][]" value="${nama}">
@@ -366,6 +412,9 @@
                                     <td class="px-6 py-4">${exp}
                                         <input type="hidden" name="items[exp][]" value="${exp}">
                                     </td>
+                                      <td class="px-6 py-4">${merk}
+                                        <input type="hidden" name="items[merk][]" value="${merk}">
+                                    </td>
                                     <td class="px-6 py-4">${penyedia}
                                         <input type="hidden" name="items[penyedia][]" value="${penyedia}">
                                     </td>
@@ -376,23 +425,19 @@
                             `;
 
                             $("#data-body").append(row);
-
+                            refreshSaveButton();
                             // Clear
-                            $("#nama_obat, #satuan, #qty, #harga, #no_batch, #exp_date, #penyedia").val("");
+                            $("#nama_obat, #satuan, #qty, #harga, #no_batch, #exp_date,#merk, #penyedia").val("");
                         });
 
-                        // === DELETE ROW ===
-                        $(document).on("click", ".deleteRow", function () {
-                            $(this).closest("tr").remove();
-                        });
-
+                    
                     });
 
                       $(document).on("click", ".edit-item", function () {
                             let id = $(this).data('id');
                             // ubah URL form menjadi UPDATE
                             $("#formInput").attr("action", "/penerimaan_item/" + id);
-                                    
+
                             // Tambahkan PUT method
                             $("#methodField").html('<input type="hidden" name="_method" value="PUT">');
                             // Ubah teks tombol submit
@@ -411,11 +456,41 @@
                                     $("#satuan").val(res.obat.satuan);
                                     $("#no_batch").val(res.no_batch);
                                     $("#exp_date").val(res.exp_date);
+                                    $("#merk").val(res.merk);
                                     $("#penyedia").val(res.penyedia);
                                 }
                             });
                         });
-                
+
+                        $(document).on("click", ".deleteRow", function() {
+                            $(this).closest("tr").remove();
+                            refreshSaveButton();
+                        })
+
+
+                        $(document).on("click", ".deleteItem", function(e){
+                            e.preventDefault();
+
+                            if (!confirm("Yakin hapus data ini?")) return;
+
+                            let id = $(this).data("id");
+
+                            // buat form delete dinamis
+                            let form = $('<form>', {
+                                'method': 'POST',
+                                'action': '/penerimaan/item/' + id
+                            });
+
+                            let token = $('meta[name="csrf-token"]').attr('content');
+
+                            form.append('<input type="hidden" name="_token" value="' + token + '">');
+                            form.append('<input type="hidden" name="_method" value="DELETE">');
+
+                            $('body').append(form);
+                            form.submit();
+                        });
+
+
 
             });
         </script>
