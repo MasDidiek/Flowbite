@@ -43,6 +43,7 @@ class ObatController extends Controller
     }
 
 
+
     function update(Request $request, Obat $obat){
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
@@ -56,7 +57,7 @@ class ObatController extends Controller
         return redirect()->route('obat.index')
                         ->with('success', 'Data obat berhasil diperbarui');
     }
-        
+
     public function import(Request $request)
     {
         $request->validate([

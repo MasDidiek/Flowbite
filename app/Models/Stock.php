@@ -4,16 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PenerimaanDetail extends Model
+class Stock extends Model
 {
-    //
-
-     protected $table = 'penerimaan_obat_detail';
+        protected $table = 'stocks';
 
         protected $fillable = [
-            'penerimaan_id',
             'obat_id',
-            'qty',
+            'stock_akhir',
             'harga',
             'no_batch',
             'exp_date',
@@ -26,10 +23,5 @@ class PenerimaanDetail extends Model
 
      public function obat() {
         return $this->belongsTo(Obat::class);
-    }
-
-    public function penerimaan()
-    {
-        return $this->belongsTo(Penerimaan::class, 'penerimaan_id');
     }
 }
