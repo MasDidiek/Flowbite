@@ -122,7 +122,7 @@
                 <div class="flex items-right md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button" class="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('images/user.png') }}" alt="user photo">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('images/avatar1.png') }}" alt="user photo">
                         <span class="ml-2 p-2">Mas Didiek</span>
                     </button>
                     <!-- Dropdown menu -->
