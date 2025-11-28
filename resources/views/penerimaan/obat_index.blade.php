@@ -40,8 +40,8 @@
                    <div class="text-2xl font-bold p-2  text-gray-700 float-left ">Penerimaan Obat</div>
 
                     <!-- Modal toggle -->
-                    <button id="btnInputPenerimaan" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white flex float-right cursor-pointer bg-blue-600 box-border border border-transparent hover:bg-blue-800 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" type="button">
-                      <svg class="w-[20px] h-[20px] text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <button id="btnInputPenerimaan" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white flex float-right cursor-pointer bg-amber-500 box-border border border-transparent hover:bg-amber-600 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" type="button">
+                      <svg class="w-[20px] h-[20px] text-white-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
                      &nbsp;  Input Penerimaan
@@ -156,16 +156,16 @@
                 <table class="w-full text-xs text-left rtl:text-right text-body"  id="obatTable">
                     <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
                          <tr>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">No</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No</th>
                            
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Tanggal</th>
-                             <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">No pembelian</th>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Penerima</th>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Pengirim</th>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider" width="150">Actions</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Tanggal</th>
+                             <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No pembelian</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Penerima</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Pengirim</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider" width="150">Actions</th>
                          </tr>
                     </thead>
-                    <tbody  class="px-6 py-5 text-left text-sm font-medium text-gray-800 dark:text-gray-200 ">
+                    <tbody  class="px-6 py-5 text-left text-sm font-medium text-gray-800 ">
 
                           @foreach($penerimaan_obat as $obat)
                             <tr>

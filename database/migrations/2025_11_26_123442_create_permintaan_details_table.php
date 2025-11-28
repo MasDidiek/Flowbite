@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('permintaan_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('permintaan_id');
+            $table->unsignedBigInteger('obat_id');
+            $table->integer('qty');
+            $table->integer('qty_dikirim');
+            $table->integer('qty_diterima');
+            $table->text('note')->nullable();
             $table->timestamps();
+                    
+            $table->foreign('permintaan_id')->references('id')->on('permintaans')->onDelete('cascade');
+            $table->foreign('obat_id')->references('id')->on('obats')->onDelete('cascade');
         });
     }
 

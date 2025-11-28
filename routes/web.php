@@ -1,17 +1,27 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PenerimaanController;
+use App\Http\Controllers\PermintaanController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::get('/home', [HomeController::class,'index']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+});
 
 
 Route::get('/obat', [ObatController::class, 'index'])->name('obat.index');
@@ -25,9 +35,6 @@ Route::post('/obat/import', [ObatController::class, 'import'])->name('obat.impor
 
 Route::get('/search-obat', [ObatController::class, 'search']);
 Route::post('/save-penerimaan', [PenerimaanController::class, 'simpanPenerimaan'])->name('penerimaan.obat.store');
-
-
-
 
 Route::get('/penerimaan/obat', [PenerimaanController::class, 'penerimaanObat'])->name('penerimaan.obat.index');
 Route::post('penerimaan/obat',[PenerimaanController::class, 'storePenerimaanObat'])->name('penerimaan.obat.store');
@@ -44,3 +51,5 @@ Route::delete('/penerimaan/{penerimaan}', [PenerimaanController::class, 'destroy
 Route::get('/penerimaan_detail/{id}/edit', [PenerimaanController::class, 'editItem'])->name('penerimaan_detail.edit');
 
 
+Route::get('/permintaan', [PermintaanController::class, 'index'])->name('permintaan.index');
+require __DIR__.'/auth.php';

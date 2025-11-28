@@ -3,7 +3,7 @@
 @section('content')
 
 
- 
+
 <div class="p-4 sm:ml-64 bg-gray-50">
 
 
@@ -32,16 +32,16 @@
 
 
 
-   <div class="p-4 rounded-base mt-12">
-         
-            <div class="mb-4">
+   <div class="p-4 rounded-base mt-12 ">
+
+            <div class="mb-4 ">
                    <div class="text-2xl font-bold p-2  text-gray-700 float-left ">Data Obat</div>
 
-               
+
 
                     <!-- Modal toggle -->
-                    <button id="btnAddObat" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white flex float-right cursor-pointer bg-blue-600 box-border border border-transparent hover:bg-blue-800 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" type="button">
-                      <svg class="w-[20px] h-[20px] text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <button id="btnAddObat" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white flex float-right cursor-pointer bg-amber-500 box-border border border-transparent hover:bg-amber-600 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" type="button">
+                      <svg class="w-[20px] h-[20px] text-white-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
                      &nbsp;   Obat
@@ -68,7 +68,7 @@
 
                                     <div id="methodField"></div>
                                     <input type="hidden" name="id" id="obat_id">
-                                    
+
                                     <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
                                         <div class="col-span-2">
                                             <label for="name" class="block mb-2.5 text-sm font-medium text-heading">Nama Obat</label>
@@ -90,11 +90,11 @@
                                         </div>
                                         <div class="col-span-2">
                                             <label for="keterangan_obat" class="block mb-2.5 text-sm font-medium text-heading">Keterangan Obat</label>
-                                            <textarea id="keterangan_obat" name="keterangan" rows="4" class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write product description here"></textarea>                    
+                                            <textarea id="keterangan_obat" name="keterangan" rows="4" class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write product description here"></textarea>
                                         </div>
                                     </div>
                                     <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
-                                      
+
                                         <button data-modal-hide="crud-modal" type="button" class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
                                       <button type="submit" class="inline-flex items-center  text-white bg-green-500 hover:bg-green-600 box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                                             <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
@@ -104,7 +104,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div> 
+                    </div>
 
             </div>
 
@@ -127,19 +127,19 @@
             @endif
 
 
-            <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default mt-4">
+            <div class="relative overflow-x-auto  rounded-lg bg-white shadow-xs rounded-base border border-default mt-4">
                 <table class="w-full text-xs text-left rtl:text-right text-body"  id="obatTable">
                     <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
                          <tr>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">No</th>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Nama</th>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Satuan</th>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Stock</th>
-                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider" width="150">Actions</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Nama</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Satuan</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Stock</th>
+                            <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider" width="150">Actions</th>
                          </tr>
                     </thead>
-                    <tbody  class="px-6 py-5 text-left text-sm font-medium text-gray-800 dark:text-gray-200 ">
-                       
+                    <tbody  class="px-6 py-5 text-left text-sm font-medium text-gray-800 ">
+
                           @foreach($obats as $obat)
                             <tr>
                                 <td class="px-6 py-5 text-center border-red-100">{{ $loop->iteration }}</td>
@@ -148,7 +148,7 @@
                                 <td class="px-6 py-5 text-right">{{ $obat->stock }}</td>
                                 <td class="px-6 py-5">
                                      <div class="flex gap-2">
-                                        
+
 
                                           <button type="button" class="edit-obat cursor-pointer text-amber-500 hover:text-yellow-600 flex"  data-id="{{ $obat->id }}" data-modal-target="crud-modal" data-modal-toggle="crud-modal">
                                              <svg class="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -161,7 +161,7 @@
                                         <form action="{{ route('obat.destroy', $obat) }}" method="POST" onsubmit="return confirm('Are you sure?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class=" text-red-500 cursor-pointer  hover:text-red-600 flex"> 
+                                            <button type="submit" class=" text-red-500 cursor-pointer  hover:text-red-600 flex">
                                                 <svg class="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
                                             </svg>
@@ -177,7 +177,7 @@
                 </table>
             </div>
 
-                
+
    </div>
 </div>
 
@@ -202,7 +202,7 @@
                     let id = $(this).data('id');
                     // ubah URL form menjadi UPDATE
                     $("#formObat").attr("action", "/obat/" + id);
-                              
+
                     // Tambahkan PUT method
                     $("#methodField").html('<input type="hidden" name="_method" value="PUT">');
                     // Ubah teks tombol submit
@@ -222,7 +222,7 @@
                         }
                     });
                 });
-           
+
 
 
                 $("#btnAddObat").click(function () {
@@ -233,7 +233,7 @@
                     $("#btnSubmit").text("Simpan");
                 });
 
-                
+
             });
         </script>
         @endpush

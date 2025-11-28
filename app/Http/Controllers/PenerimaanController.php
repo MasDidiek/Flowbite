@@ -23,7 +23,7 @@ class PenerimaanController extends Controller
     function penerimaanObat(){
 
         $penerimaan_obat = Penerimaan::all();
-      
+
         return view('penerimaan.obat_index', compact('penerimaan_obat'));
     }
 
@@ -49,7 +49,7 @@ class PenerimaanController extends Controller
 
     function detailPenerimaanObat($id){
         $penerimaan_obat = Penerimaan::with('details.obat')->find($id);
-    
+
        return view('penerimaan.obat_detail', compact('penerimaan_obat'));
     }
 
@@ -170,6 +170,7 @@ class PenerimaanController extends Controller
     }
 
 
+
     public function store(Request $request)
     {
 
@@ -179,7 +180,7 @@ class PenerimaanController extends Controller
 
 
         foreach ($items['nama_obat'] as $i => $v){
-            
+
            $expDate =  $items['exp'][$i];
            $expDate = Carbon::parse($expDate)->format('Y-m-d');
 
@@ -207,7 +208,7 @@ class PenerimaanController extends Controller
             $penyedia  = $items['penyedia'][$i];
             $merk      = $items['merk'][$i];
 
-           
+
             $expDate = Carbon::parse($exp)->format('Y-m-d');
                 // Cari stock existing berdasarkan obat + batch
                 $stock = Stock::where('obat_id', $obat_id)
@@ -260,7 +261,7 @@ class PenerimaanController extends Controller
         return response()->json($obat);
     }
 
-    
+
     function update(Request $request, Penerimaan $penerimaan){
         $validated = $request->validate([
             'no_pembelian' => 'required|string',
@@ -276,7 +277,7 @@ class PenerimaanController extends Controller
                         ->with('success', 'Data penerimaan obat berhasil diperbarui');
     }
 
-    
+
     public function destroy(Penerimaan $penerimaan)
     {
         $penerimaan->delete();
@@ -311,7 +312,7 @@ class PenerimaanController extends Controller
             }
 
 
-            
+
         // 3. Hapus data di tabel 'stock' berdasarkan no_batch
         $stock = Stock::where('no_batch', $PenerimaanDetail->no_batch)->first();
 
@@ -326,7 +327,7 @@ class PenerimaanController extends Controller
          $PenerimaanDetail->delete();
 
 
-        
+
         return redirect()->route('penerimaan.obat.detail_penerimaan', $id_penerimaan)
                                 ->with('success', 'Data obat berhasil dihapus');
     }

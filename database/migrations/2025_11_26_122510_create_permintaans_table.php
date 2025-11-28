@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('permintaans', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('ketegori_permintaan');
+            $table->date('tanggal');
+            $table->string('status');
             $table->timestamps();
         });
     }
