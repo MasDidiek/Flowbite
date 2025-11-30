@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
-
     <div class="p-4 sm:ml-64 bg-gray-50">
-
-
         <nav class="flex ml-4" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
@@ -37,76 +31,15 @@
 
             <div class="mb-4">
                 <div class="text-2xl font-bold p-2  text-gray-700 float-left ">Permintaan</div>
-
-                <!-- Modal toggle -->
-                <button id="btnInputPenerimaan" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white flex float-right cursor-pointer bg-amber-500 box-border border border-transparent hover:bg-amber-600 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" type="button">
-                    <svg class="w-[20px] h-[20px] text-white-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                <a href="{{route('permintaan.create')}}" class="border bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 float-right flex rounded-lg text-sm">
+                    <svg class="w-[18px] h-[18px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
                     </svg>
-                    &nbsp; Buat Permintaan
-                </button>
-
-                <!-- Main modal -->
-                <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative p-4 w-full max-w-md max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
-                            <!-- Modal header -->
-                            <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
-                                <h3 class="text-lg font-medium text-heading">
-                                    Input  Permintaan
-                                </h3>
-                                <button type="button" class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="crud-modal">
-                                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            <!-- Modal body -->
-                            <form method="post" action="{{ route('penerimaan.obat.store') }}" id="formInput">
-                                @csrf
-
-
-
-                                <div id="methodField"></div>
-                                <input type="hidden" name="id" id="penerimaan_id">
-
-                                <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="no_pembelian" class="block mb-2.5 text-sm font-medium text-heading">Kategori Permintaan</label>
-                                        <input type="text" name="no_pembelian" id="no_pembelian" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Input no Pembelian" required="">
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="tanggal" class="block mb-2.5 text-sm font-medium text-heading">Tanggal</label>
-
-                                        <div class="relative max-w-sm">
-                                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/></svg>
-                                            </div>
-                                            <input id="tgl_penerimaan" name="tgl_penerimaan" autocomplete="off"  datepicker datepicker-format="dd-mm-yyyy"  datepicker datepicker-autohide type="text" class="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Select date">
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="border-default pt-4 md:pt-6">
-
-                                    <button data-modal-hide="crud-modal" type="button" class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
-                                    <button type="submit" id="btnSubmit" class="float-right cursor-pointer items-center  text-white bg-green-500 hover:bg-green-600 box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-
-                                        Simpan
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
+                   Buat Permintaan
+                </a>
             </div>
 
             <div class="clear-both"></div>
-
-
-            <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default mt-4">
 
 
                 @if ($errors->any())
@@ -136,62 +69,47 @@
                     </div>
                 @endif
 
+                <div class="relative overflow-x-auto bg-white shadow-xs rounded-lg border border-default mt-4">
 
 
-                <table class="w-full text-xs text-left rtl:text-right text-body"  id="obatTable">
-                    <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
-                    <tr>
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No</th>
+                        <table class="w-full text-xs text-left rtl:text-right text-body"  id="obatTable">
+                            <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
+                            <tr>
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No</th>
 
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Tanggal</th>
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No Surat</th>
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Jns Permintaan</th>
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">User</th>
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Bagian</th>
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Puskesmas</th>
-                        <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider" width="150">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody  class="px-6 py-5 text-left text-sm font-medium text-gray-800 ">
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Tanggal</th>
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No Surat</th>
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Jns Permintaan</th>
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">User</th>
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Bagian</th>
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Puskesmas</th>
+                                <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Status</th>
 
-                    @foreach($permintaan as $prm)
-                        <tr>
-                            <td class="px-6 py-5 text-center border-red-100">{{ $loop->iteration }}</td>
+                            </tr>
+                            </thead>
+                             <tbody  class="px-6 py-5 text-left text-sm font-medium text-gray-800 ">
 
-                            <td class="px-6 py-5">{{ $prm->tanggal }}</td>
-                            <td class="px-6 py-5 font-semibold text-amber-500 hover:text-amber-600">
-                                <a href="{{ route('permintaan.detail', $prm->id) }}">{{ $prm->no_surat }}</a></td>
-                            <td class="px-6 py-5"></td>
-                            <td class="px-6 py-5"></td>
-                            <td class="px-6 py-5">
-                                <div class="flex gap-2">
-                                    <button type="button" class="edit-penerimaan cursor-pointer text-amber-500 hover:text-yellow-600 flex"  data-id="{{ $prm->id }}" data-modal-target="crud-modal" data-modal-toggle="crud-modal">
-                                        <svg class="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                                        </svg>
+                                @foreach($permintaan as $prm)
+                                    <tr>
+                                        <td class="px-6 py-5 text-center border-red-100">{{ $loop->iteration }}</td>
 
-                                        Edit
-                                    </button>
-                                    <form action="{{ route('$permintaan.destroy', $prm) }}" method="POST" onsubmit="return confirm('Are you sure?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class=" text-red-500 cursor-pointer  hover:text-red-600 flex">
-                                            <svg class="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                                            </svg>
+                                        <td class="px-6 py-5">{{ $prm->tanggal }}</td>
+                                        <td class="px-6 py-5 font-semibold text-amber-500 hover:text-amber-600">
+                                            <a href="{{ route('permintaan.detail', $prm->id) }}">{{ $prm->no_surat }}</a></td>
+                                        <td class="px-6 py-5">{{ $prm->kategori_permintaan }}</td>
+                                        <td class="px-6 py-5">{{ $prm->user->name }}</td>
+                                        <td class="px-6 py-5">{{ $prm->user->bagian }}</td>
+                                        <td class="px-6 py-5">{{ $prm->user->lokasi_kerja }}</td>
+                                        <td class="px-6 py-5">{{ $prm->status }}</td>
 
-                                            Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
+                                    </tr>
+                                @endforeach
 
-                    </tbody>
-                </table>
+                                </tbody>
+                            </table>
+                        </div>
+
             </div>
-
-
         </div>
     </div>
 

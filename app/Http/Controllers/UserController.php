@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -25,13 +26,23 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email'=> 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
+            'nip' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'puskesmas' => 'required|string|max:255',
+            'bagian' => 'required|string|max:255',
+            'username'=> 'required|unique:users,username,',
+            'email'=> 'required|email|unique:users,email,',
+            'password'=> 'nullable|string|min:6|confirmed',
         ]);
 
         User::create([
             'name' => $request->name,
             'email'=> $request->email,
+            'nip' => $request->nip,
+            'jabatan' => $request->jabatan,
+            'lokasi_kerja' => $request->puskesmas,
+            'bagian' => $request->bagian,
+            'username' => $request->username,
             'password'=> bcrypt($request->password),
         ]);
 
@@ -41,20 +52,36 @@ class UserController extends Controller
     // Tampilkan form edit
     public function edit(User $user)
     {
+
         return view('users.edit', compact('user'));
     }
 
     // Update user
     public function update(Request $request, User $user)
     {
+
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email'=> 'required|email|unique:users,email,' . $user->id,
-            'password'=> 'nullable|string|min:6|confirmed',
+            'username' => [
+                'required',
+                Rule::unique('users', 'username')->ignore($user->id),
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->ignore($user->id),
+            ],
         ]);
 
+
         $user->name = $request->name;
+        $user->nip= $request->nip;
+        $user->jabatan = $request->jabatan;
+        $user->lokasi_kerja= $request->puskesmas;
+        $user->bagian = $request->bagian;
+        $user->username = $request->username;
         $user->email= $request->email;
+
+
         if($request->password){
             $user->password = bcrypt($request->password);
         }

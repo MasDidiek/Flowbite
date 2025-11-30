@@ -312,18 +312,18 @@
 
 
                 function refreshSaveButton() {
-                            let count = $("#data-body tr").length;
+                    let count = $("#data-body tr").length;
 
-                            if (count > 0) {
-                                $("#btnSave")
-                                    .prop("disabled", false)
-                                    .removeClass("opacity-50 cursor-not-allowed");
-                            } else {
-                                $("#btnSave")
-                                    .prop("disabled", true)
-                                    .addClass("opacity-50 cursor-not-allowed");
-                            }
-                        }
+                    if (count > 0) {
+                        $("#btnSave")
+                            .prop("disabled", false)
+                            .removeClass("opacity-50 cursor-not-allowed");
+                    } else {
+                        $("#btnSave")
+                            .prop("disabled", true)
+                            .addClass("opacity-50 cursor-not-allowed");
+                    }
+                }
 
 
                 $(document).ready(function () {
@@ -387,6 +387,8 @@
                                 alert("Nama obat dan qty wajib diisi!");
                                 return;
                             }
+
+
 
                             let row = `
                                 <tr class="border-b border-default">

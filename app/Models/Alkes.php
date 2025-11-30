@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Alkes extends Model
+{
+     protected $fillable = [
+        'nama',
+        'kategori',
+        'satuan',
+        'stock',
+        'merk',
+        'penyedia',
+        'image',
+        'description',
+    ];
+
+}

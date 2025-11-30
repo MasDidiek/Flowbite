@@ -19,9 +19,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    #-----users------
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+    #---permintaan
+    Route::get('/permintaan', [PermintaanController::class, 'index'])->name('permintaan.index');
+    Route::get('/permintaan/create', [PermintaanController::class, 'create'])->name('permintaan.create');
+    Route::post('/permintaan', [PermintaanController::class, 'store'])->name('permintaan.store');
+    Route::get('/permintaan/input_item/{id}', [PermintaanController::class, 'inputItem'])->name('permintaan.input_item');
+    Route::get('/permintaan/detail/{id}', [PermintaanController::class, 'permintaanDetail'])->name('permintaan.detail');
+    Route::delete('/permintaan/{permintaan}', [PermintaanController::class, 'destroy'])->name('permintaan.destroy');
+
+    Route::post('/permintaan/insert_item', [PermintaanController::class, 'insertItem']);
+    Route::delete('/permintaan/delete_item/{id}', [PermintaanController::class, 'deleteItem']);
+
+
 });
+
+
 
 
 Route::get('/obat', [ObatController::class, 'index'])->name('obat.index');
@@ -51,5 +72,5 @@ Route::delete('/penerimaan/{penerimaan}', [PenerimaanController::class, 'destroy
 Route::get('/penerimaan_detail/{id}/edit', [PenerimaanController::class, 'editItem'])->name('penerimaan_detail.edit');
 
 
-Route::get('/permintaan', [PermintaanController::class, 'index'])->name('permintaan.index');
+
 require __DIR__.'/auth.php';

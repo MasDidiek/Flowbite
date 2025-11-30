@@ -10,6 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
     <!-- Styles / Scripts -->
@@ -108,6 +109,27 @@
 </head>
 <body>
 
+<div
+    x-data="{ show: false, message: '' }"
+    x-show="show"
+    x-transition
+    x-init="
+        window.addEventListener('toast', event => {
+            message = event.detail.message;
+            show = true;
+            setTimeout(() => show = false, event.detail.duration || 3000);
+        })
+    "
+    class="fixed top-5 right-5 z-[100000]"
+>
+    <div class="bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 13l4 4L19 7" />
+        </svg>
+        <span x-text="message"></span>
+    </div>
+</div>
 
 
 @include("layouts.sidebar")

@@ -40,7 +40,7 @@
                    <div class="text-2xl font-bold p-2  text-gray-700 float-left ">Penerimaan Obat</div>
 
                     <!-- Modal toggle -->
-                    <button id="btnInputPenerimaan" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white flex float-right cursor-pointer bg-amber-500 box-border border border-transparent hover:bg-amber-600 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" type="button">
+                    <button id="btnInputPenerimaan" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white flex float-right cursor-pointer bg-amber-500 box-border border border-transparent hover:bg-amber-600 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-lg text-sm px-4 py-2.5 focus:outline-none" type="button">
                       <svg class="w-[20px] h-[20px] text-white-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
@@ -48,10 +48,10 @@
                     </button>
 
                     <!-- Main modal -->
-                    <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center bg-gray-100 items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative p-4 w-full max-w-md max-h-full">
                             <!-- Modal content -->
-                            <div class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
+                            <div class="relative bg-white border border-default rounded-base shadow-sm p-4 md:p-6">
                                 <!-- Modal header -->
                                 <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                                     <h3 class="text-lg font-medium text-heading">
@@ -66,7 +66,7 @@
                                  <form method="post" action="{{ route('penerimaan.obat.store') }}" id="formInput">
                                      @csrf
 
-                                 
+
 
                                     <div id="methodField"></div>
                                     <input type="hidden" name="id" id="penerimaan_id">
@@ -121,9 +121,9 @@
             <div class="clear-both"></div>
 
 
-            <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default mt-4">
+            <div class="relative overflow-x-auto bg-white shadow-xs rounded-lg border border-default mt-4">
 
-                
+
                 @if ($errors->any())
                 <div class="p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft" role="alert">
                       <span class="font-medium">Gagal menyimpan data</span>
@@ -136,7 +136,7 @@
                     </div>
                 @endif
 
-                
+
              @if(session('success'))
                    <div id="toast-success" class="flex items-center w-full max-w-sm p-4 text-body bg-neutral-primary-soft rounded-base shadow-xs border border-default fixed top-5 right-5" role="alert">
                         <div class="inline-flex items-center justify-center shrink-0 w-7 h-7 text-fg-success bg-success-soft rounded">
@@ -157,7 +157,7 @@
                     <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
                          <tr>
                             <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No</th>
-                           
+
                             <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Tanggal</th>
                              <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">No pembelian</th>
                             <th class="px-6 py-5text-left text-xs font-medium text-gray-800 uppercase tracking-wider">Penerima</th>
@@ -170,7 +170,7 @@
                           @foreach($penerimaan_obat as $obat)
                             <tr>
                                 <td class="px-6 py-5 text-center border-red-100">{{ $loop->iteration }}</td>
-                               
+
                                 <td class="px-6 py-5">{{ $obat->tgl_penerimaan }}</td>
                                  <td class="px-6 py-5 font-semibold text-amber-500 hover:text-amber-600">
                                     <a href="{{ route('penerimaan.obat.detail_penerimaan', $obat->id) }}">{{ $obat->no_pembelian }}</a></td>
@@ -227,7 +227,7 @@
                     let id = $(this).data('id');
                     // ubah URL form menjadi UPDATE
                     $("#formInput").attr("action", "/penerimaan/" + id);
-                              
+
                     // Tambahkan PUT method
                     $("#methodField").html('<input type="hidden" name="_method" value="PUT">');
                     // Ubah teks tombol submit
@@ -248,8 +248,8 @@
                         }
                     });
                 });
-           
-                
+
+
                 $("#btnInputPenerimaan").click(function () {
                     $("#formInput").trigger("reset"); // reset form
                     $("#formInput").attr("action", "/penerimaan/obat"); // kembali ke store
